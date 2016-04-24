@@ -10,7 +10,7 @@
  * Writes to a data file, storing the binary tree between
  * runs of the program
  * @param self   a pointer to self, the binary tree
- * @param stream the file you are writing to
+ * @param stream the input stream
  */
 void binary_tree_write(binary_tree *self, FILE *stream);
 
@@ -18,18 +18,20 @@ void binary_tree_write(binary_tree *self, FILE *stream);
  * Reads from a data file, storing the binary tree between
  * runs of the program
  * @param self    a pointer to self, the binary tree
- * @param stream the file you are reading from
+ * @param stream the input stream
  */
 void binary_tree_read(binary_tree *self, FILE *stream);
 
 /**
- * [binary_tree_create_f description]
- * @param  stream [description]
- * @return  NULL, if...
+ * Creates a binary tree from a data file
+ * @param  stream the input stream
+ * @return    Binary tree or NULL, if...
  *            1. the input stream does not represent a
  *            pre-order traversal of a binary tree
- *            2.
- *
+ *            2. there is a line in the input file
+ *            that does not begin with Q or A
+ *            3. there is a blank line in the input file
+ *            4. Any other unexpected error occurs
  */
 binary_tree *binary_tree_create_f(FILE *stream);
 
