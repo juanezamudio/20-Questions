@@ -13,7 +13,7 @@ author_name = Juan Zamudio and David Cremins
 project_name = Assignment11
 #
 # Command line arguments:
-CMD_ARGS ?=
+CMD_ARGS ?= /home/jzamudio/Desktop/Github Workspace/Assignment11_ZamudioJuan_Cremins_David/input.txt /home/jzamudio/Desktop/Github Workspace/Assignment11_ZamudioJuan_Cremins_David/output.txt
 #
 # You will use the following commands provided by this makefile:
 #
