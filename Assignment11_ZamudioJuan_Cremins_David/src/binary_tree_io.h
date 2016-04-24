@@ -15,14 +15,6 @@
 void binary_tree_write(binary_tree *self, FILE *stream);
 
 /**
- * Reads from a data file, storing the binary tree between
- * runs of the program
- * @param self    a pointer to self, the binary tree
- * @param stream the input stream
- */
-void binary_tree_read(binary_tree *self, FILE *stream);
-
-/**
  * Creates a binary tree from a data file
  * @param  stream the input stream
  * @return    Binary tree or NULL, if...
