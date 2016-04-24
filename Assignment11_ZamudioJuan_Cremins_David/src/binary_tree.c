@@ -13,45 +13,61 @@ struct binary_tree {
   binary_tree *parent;
 };
 
+// initialize here
+binary_tree *new_tree = NULL;
+
 // Constructors
 // TODO malloc in all of the constructors
 binary_tree *binary_tree_create() {
-  binary_tree *newTree = {NULL, NULL, NULL};
-  newTree->value[0] = '\0';
-  // newTree->value = NULL; // starts empty?
-  malloc(sizeof(newTree));
-  // newTree->left = NULL;
-  // newTree->right = NULL; // left and right 'this'?
-  // newTree->parent = NULL;
-  return newTree;
-} // don't need ending ; ?
+  if (new_tree == NULL) {
 
-binary_tree *binary_tree_create_s(char *str) {  // assume null terminated{
-  assert(strlen(str) < MAX_STRING_SIZE);        // valid?
-  binary_tree *newTreeTwo = {NULL, NULL, NULL}; // why only need two?
-  malloc(sizeof(newTreeTwo));
-  for (int i = 0; i < strlen(str); i++) {
-    newTreeTwo->value[i] = str[i];
+    new_tree = malloc(sizeof(binary_tree));
+    new_tree->value[0] = '\0';
+    new_tree->left = NULL;
+    new_tree->right = NULL;
+    new_tree->parent = NULL;
   }
-  return newTreeTwo;
+  return new_tree; // maybe lead to errors?
+}
+
+binary_tree *binary_tree_create_s(char *str) { // assume null terminated{
+  assert(strlen(str) < MAX_STRING_SIZE);
+  if (new_tree == NULL) {
+    new_tree = malloc(sizeof(binary_tree));
+    for (int i = 0; i < strlen(str); i++) {
+      new_tree->value[i] = str[i];
+    }
+    new_tree->left = NULL;
+    new_tree->right = NULL;
+    new_tree->parent = NULL;
+  }
+  return new_tree;
 }
 
 binary_tree *binary_tree_create_stt(char *str, binary_tree *left,
                                     binary_tree *right) {
-  assert(strlen(str) < MAX_STRING_SIZE);     // valid?
-  binary_tree *newTreeThree = {left, right}; // why only need two?
-  malloc(sizeof(newTreeThree));
-  for (int i = 0; i < strlen(str); i++) {
-    newTreeThree->value[i] = str[i];
+  assert(strlen(str) < MAX_STRING_SIZE); // valid?
+  if (new_tree == NULL) {
+    new_tree = malloc(sizeof(binary_tree));
+    for (int i = 0; i < strlen(str); i++) {
+      new_tree->value[i] = str[i];
+    }
+    new_tree->left = left;
+    new_tree->right = right;
+    new_tree->parent = NULL;
   }
-  return newTreeThree;
+  return new_tree;
 }
 
 // Destructor
 // This function should be implemented recursively and free nodes in post- order
 void binary_tree_destroy(binary_tree *self) {
-  free(self);
-  self = NULL;
+  if (!(self->left = self->right = NULL)) { // vs. == ****
+    binary_tree_destroy(self->left);
+    binary_tree_destroy(self->right);
+    free(self);
+    self = NULL;
+  }
 };
 
 // Setters
@@ -115,8 +131,17 @@ int binary_tree_depth(binary_tree *self) {
 }
 
 // Getters
-// not sure exactly what this one wants to do
-char *binary_tree_get_string(binary_tree *self, char *str);
+// not sure exactly what this one wants to do, return in str the info stored in
+// node
+char *binary_tree_get_string(binary_tree *self, char *str) {
+  int i = 0;
+  while (self->value[i] != '\0') {
+    str[i] = self->value[i];
+    i++;
+  }
+  str[i] = '\0';
+  return str;
+}
 
 binary_tree *binary_tree_get_left(binary_tree *self) { return self->left; }
 
