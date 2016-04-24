@@ -131,8 +131,6 @@ int binary_tree_depth(binary_tree *self) {
 }
 
 // Getters
-// not sure exactly what this one wants to do, return in str the info stored in
-// node
 char *binary_tree_get_string(binary_tree *self, char *str) {
   int i = 0;
   while (self->value[i] != '\0') {
