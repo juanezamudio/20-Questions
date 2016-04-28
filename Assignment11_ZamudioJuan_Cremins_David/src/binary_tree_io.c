@@ -32,51 +32,51 @@ void binary_tree_write(binary_tree *self, FILE *stream) {
 binary_tree *binary_tree_create_f(FILE *stream) {
 
   binary_tree *newTree = binary_tree_create();
+  // maybe not setting first element
 
   char *line = NULL; // current line
   size_t a = 0;      // current line total mem allocation
   ssize_t n = 0;     // current line length (ssize_t is a signed size_t)
 
-  while ((n = getline(&line, &a, stream)) != -1) {
-    if (line[0] != 'Q' && line[0] != 'A') {
-      free(line);
-      line = NULL;
-      return NULL;
-    }
-    if (line[0] == '\0') {
-      free(line);
-      line = NULL;
-      return NULL;
-    }
-    size_t index = 0;
-    if (line[index] == 'Q') {
-      index++;
-      char *str = NULL;
-      while (line[index] != '\0') {
-        str[index - 1] = line[index];
-        index++;
-      }
-      str[index - 1] = '\0';
-      binary_tree_set_left(newTree, binary_tree_create_f(stream));
-      binary_tree_set_right(newTree, binary_tree_create_f(stream));
-      // TODO recursion correctly
-      //
-    } else if (line[index] == 'A') { // at a leaf/answer
-      index++;
-      char *str = NULL;
-      while (line[index] != '\0') {
-        str[index - 1] = line[index];
-        index++;
-      }
-      str[index - 1] = '\0';
-      free(line);
-      line = NULL;                      // necessary here?
-      return binary_tree_create_s(str); // Does it moo? not QDoes it moo?
-    }
+  n = getline(&line, &a, stream);
+  if (n == -1) {
+    return NULL;
   }
-
-  // Free memory allocated by getline
-  free(line);
-  line = NULL;
+  if (line[0] != 'Q' && line[0] != 'A') {
+    // free(line);
+    // line = NULL;
+    return NULL;
+  }
+  if (line[0] == '\0') {
+    // free(line);
+    // line = NULL;
+    return NULL;
+  }
+  size_t index = 0;
+  if (line[index] == 'Q') {
+    index++;
+    char *str = NULL;
+    while (line[index] != '\0') {
+      str[index - 1] = line[index];
+      index++;
+    }
+    str[index - 1] = '\0';
+    binary_tree_set_left(newTree, binary_tree_create_f(stream));
+    binary_tree_set_right(newTree, binary_tree_create_f(stream));
+    // TODO recursion correctly
+  } else if (line[index] == 'A') { // at a leaf/answer
+    index++;
+    char *str = NULL;
+    while (line[index] != '\0') {
+      str[index - 1] = line[index];
+      index++;
+    }
+    str[index - 1] = '\0';
+    // necessary here?
+    return binary_tree_create_s(str); // Does it moo? not QDoes it moo
+  }
+  // // Free memory allocated by getline
+  // free(line);
+  // line = NULL;
   return newTree;
 }

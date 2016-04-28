@@ -131,6 +131,7 @@ int binary_tree_depth(binary_tree *self) {
 }
 
 // Getters
+// look at piazza note on this function
 char *binary_tree_get_string(binary_tree *self, char *str) {
   int i = 0;
   while (self->value[i] != '\0') {

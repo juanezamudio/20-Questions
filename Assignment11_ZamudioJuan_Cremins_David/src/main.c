@@ -28,8 +28,8 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  binary_tree *gameTree = binary_tree_create();
-  binary_tree_write(gameTree, output);
+  // binary_tree *gameTree = binary_tree_create();
+  // binary_tree_write(gameTree, output);
 
   // Step 3: check for error in file stream
   if (!feof(input)) {
@@ -40,6 +40,9 @@ int main(int argc, char *argv[]) {
   // Step 4: Close files
   fclose(input);
   fclose(output);
+
+  binary_tree *created = binary_tree_create_f(input);
+  binary_tree_write(created, stdout);
 
   return EXIT_SUCCESS;
 }
