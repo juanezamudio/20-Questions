@@ -14,10 +14,9 @@ struct binary_tree {
 };
 
 // initialize here
-binary_tree *new_tree = NULL;
+binary_tree *new_tree = NULL; // MAYBE DON'T DO THIS
 
 // Constructors
-// TODO malloc in all of the constructors
 binary_tree *binary_tree_create() {
   if (new_tree == NULL) {
 
@@ -68,7 +67,7 @@ void binary_tree_destroy(binary_tree *self) {
     free(self);
     self = NULL;
   }
-};
+}
 
 // Setters
 // The greatest challenge is to maintain the parent pointers properly when
@@ -90,7 +89,8 @@ void binary_tree_set_right(binary_tree *self, binary_tree *right) {
 
 // Queries
 bool binary_tree_is_empty(binary_tree *self) {
-  return ((self->left = self->right = NULL) && (self->value[0] == '\0')); // ok?
+  return ((self->left == self->right) && (self->left == NULL)); // ok?
+  // && (self->value[0] == '\0'))
 }
 
 bool binary_tree_is_leaf(binary_tree *self) {

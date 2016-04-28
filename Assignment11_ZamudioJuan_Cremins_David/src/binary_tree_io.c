@@ -1,9 +1,11 @@
 #include "binary_tree_io.h"
+#include "binary_tree.h"
 
 void binary_tree_write(binary_tree *self, FILE *stream) {
   // use create functions
-  // *binary_tree_get_string(binary_tree *self, char *str)
+  //*binary_tree_get_string(binary_tree *self, char *str)
   if (binary_tree_is_empty(self)) {
+    // DO NOTHING?
     return;
   }
 
@@ -31,7 +33,7 @@ void binary_tree_write(binary_tree *self, FILE *stream) {
  */
 binary_tree *binary_tree_create_f(FILE *stream) {
 
-  binary_tree *newTree = binary_tree_create();
+  // binary_tree *newTree = binary_tree_create();
   // maybe not setting first element
 
   char *line = NULL; // current line
@@ -55,18 +57,23 @@ binary_tree *binary_tree_create_f(FILE *stream) {
   size_t index = 0;
   if (line[index] == 'Q') {
     index++;
-    char *str = NULL;
+    // char *str = NULL;
+    char str[MAX_STRING_SIZE];
     while (line[index] != '\0') {
       str[index - 1] = line[index];
       index++;
     }
     str[index - 1] = '\0';
+    binary_tree *newTree = binary_tree_create_s(str);
+    // issue here???
     binary_tree_set_left(newTree, binary_tree_create_f(stream));
     binary_tree_set_right(newTree, binary_tree_create_f(stream));
+    return newTree; // OKAY HERE?
     // TODO recursion correctly
   } else if (line[index] == 'A') { // at a leaf/answer
     index++;
-    char *str = NULL;
+    // char *str = NULL;
+    char str[MAX_STRING_SIZE];
     while (line[index] != '\0') {
       str[index - 1] = line[index];
       index++;
@@ -78,5 +85,6 @@ binary_tree *binary_tree_create_f(FILE *stream) {
   // // Free memory allocated by getline
   // free(line);
   // line = NULL;
-  return newTree;
+  // return newTree;
+  return NULL;
 }
