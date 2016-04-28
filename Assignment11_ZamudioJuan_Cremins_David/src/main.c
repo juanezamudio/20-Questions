@@ -23,8 +23,8 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
   FILE *output = fopen(argv[2], "w"); // Open in write mode
-  if (input == NULL) {
-    printf("Could not open file %s!\n", argv[1]);
+  if (output == NULL) {
+    printf("Could not open file %s!\n", argv[2]);
     exit(EXIT_FAILURE);
   }
 
@@ -39,12 +39,15 @@ int main(int argc, char *argv[]) {
 
   // Step 4: Close files
   fclose(input);
-  fclose(output);
 
   // issue probably in this function
   binary_tree *created = binary_tree_create_f(input);
   binary_tree *gameTree = binary_tree_create_s("ooga"); // testing
-  binary_tree_write(created, output);
+  binary_tree_write(gameTree, stdout);
+  fprintf(stdout, "yo\n");
+  printf("random shit");
+  fclose(stdout);
+  fclose(output); // here or above?
 
   return EXIT_SUCCESS;
 }

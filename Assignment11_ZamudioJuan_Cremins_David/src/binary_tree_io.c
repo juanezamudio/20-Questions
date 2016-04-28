@@ -6,18 +6,20 @@ void binary_tree_write(binary_tree *self, FILE *stream) {
   //*binary_tree_get_string(binary_tree *self, char *str)
   if (binary_tree_is_empty(self)) {
     // DO NOTHING?
-    return;
+    return exit(EXIT_SUCCESS);
   }
 
   if (binary_tree_is_leaf(self)) {
     // go back to parent, look to the right, if no right continue back to parent
-    char *str = NULL; // initialize some other way
-    str = binary_tree_get_string(self, str);
-    fprintf(stream, "A%s", str);
-  } else {            // inner node, therefore a question
-    char *str = NULL; // initialize some other way
-    str = binary_tree_get_string(self, str);
-    fprintf(stream, "Q%s", str);
+    // char *str = NULL; // initialize some other way
+    char str[MAX_STRING_SIZE];
+    char *result = binary_tree_get_string(self, str);
+    fprintf(stream, "hello");
+    fprintf(stream, "A%s", result);
+  } else { // inner node, therefore a question
+    char str[MAX_STRING_SIZE];
+    char *result = binary_tree_get_string(self, str);
+    fprintf(stream, "Q%s", result);
     binary_tree_write(binary_tree_get_left(self), stream);
     binary_tree_write(binary_tree_get_right(self), stream);
   }
@@ -33,7 +35,7 @@ void binary_tree_write(binary_tree *self, FILE *stream) {
  */
 binary_tree *binary_tree_create_f(FILE *stream) {
 
-  // binary_tree *newTree = binary_tree_create();
+  binary_tree *newTree = binary_tree_create();
   // maybe not setting first element
 
   char *line = NULL; // current line
@@ -42,8 +44,8 @@ binary_tree *binary_tree_create_f(FILE *stream) {
 
   n = getline(&line, &a, stream);
   if (n == -1) {
-    return NULL;
-  }
+    return newTree; // change
+  }                 // this is a special case
   if (line[0] != 'Q' && line[0] != 'A') {
     // free(line);
     // line = NULL;
@@ -64,11 +66,11 @@ binary_tree *binary_tree_create_f(FILE *stream) {
       index++;
     }
     str[index - 1] = '\0';
-    binary_tree *newTree = binary_tree_create_s(str);
+    newTree = binary_tree_create_s(str);
     // issue here???
     binary_tree_set_left(newTree, binary_tree_create_f(stream));
     binary_tree_set_right(newTree, binary_tree_create_f(stream));
-    return newTree; // OKAY HERE?
+    // return newTree; // OKAY HERE?
     // TODO recursion correctly
   } else if (line[index] == 'A') { // at a leaf/answer
     index++;
@@ -85,6 +87,6 @@ binary_tree *binary_tree_create_f(FILE *stream) {
   // // Free memory allocated by getline
   // free(line);
   // line = NULL;
-  // return newTree;
-  return NULL;
+  return newTree; // necessary here
+  // return NULL;
 }
