@@ -2,6 +2,7 @@
 
 #include "binary_tree.h"
 #include "binary_tree_io.h"
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 // TODO: You will probably need to add more includes...
@@ -35,14 +36,16 @@ int main(int argc, char *argv[]) {
 
   // Step 4: Close files
 
-  // issue probably in this function
   binary_tree *created = binary_tree_create_f(input);
-  binary_tree_write(created, output);
-  if (binary_tree_is_empty(created)) {
-    fprintf(stdout, "empty\n");
+  binary_tree *left = binary_tree_get_left(created);
+  if (left == NULL) {
+    fprintf(stdout, "null in main\n");
   }
-  // fprintf(stdout, "non-empty");
-  // fprintf(output, "yo\n");
+  char helpStr[MAX_STRING_SIZE];
+  fprintf(stdout, "%s in main\n", binary_tree_get_string(left, helpStr));
+  assert(binary_tree_get_left(created) != NULL);
+  binary_tree_write(created, output);
+
   fclose(stdout);
   fclose(output); // here or above?
   fclose(input);

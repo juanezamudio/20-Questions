@@ -91,12 +91,13 @@ void binary_tree_set_right(binary_tree *self, binary_tree *right) {
 
 // Queries
 bool binary_tree_is_empty(binary_tree *self) {
-  return ((self->left == self->right) && (self->left == NULL)); // ok?
-  // && (self->value[0] == '\0'))
+  return ((self->left == self->right) && (self->left == NULL) &&
+          (self->value[0] == '\0'));
 }
 
 bool binary_tree_is_leaf(binary_tree *self) {
-  return (self->value[0] != '\0' && (self->left = self->right = NULL));
+  return (self->value[0] != '\0' &&
+          ((self->left == self->right) && (self->right == NULL)));
 }
 
 bool binary_tree_is_left(binary_tree *self) {
