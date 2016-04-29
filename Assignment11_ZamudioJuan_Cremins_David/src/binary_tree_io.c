@@ -70,6 +70,8 @@ binary_tree *binary_tree_create_f(FILE *stream) {
     newTree = binary_tree_create_s(str);
 
     // recursion
+    // maybe use the other creation function and use asserts to find problems
+    // TODO enable it to work when two questions go in a row
     binary_tree *left = binary_tree_create_f(stream);
     binary_tree *right = binary_tree_create_f(stream);
     binary_tree_set_left(newTree, left);

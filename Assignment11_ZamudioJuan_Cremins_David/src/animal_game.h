@@ -2,7 +2,7 @@
 #ifndef __ANIMAL_GAME_H__
 #define __ANIMAL_GAME_H__
 
-#include "binary_tree_io.c"
+#include "binary_tree_io.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>

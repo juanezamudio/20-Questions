@@ -1,5 +1,5 @@
 QDoes it moo?
-Awhale
-QHow big?
 Agnat
-Ahorse
+QDoes it live in water?
+Awhale
+Acow
