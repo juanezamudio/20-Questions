@@ -29,20 +29,22 @@ binary_tree *binary_tree_create() {
   return new_tree; // maybe lead to errors?
 }
 
-binary_tree *binary_tree_create_s(char *str) { // assume null terminated{
-  assert(strlen(str) < MAX_STRING_SIZE);
-  if (new_tree == NULL) {
-    new_tree = malloc(sizeof(binary_tree));
-    for (int i = 0; i < strlen(str); i++) {
-      new_tree->value[i] = str[i];
-    }
-    new_tree->left = NULL;
-    new_tree->right = NULL;
-    new_tree->parent = NULL;
-  }
-  return new_tree;
+binary_tree *binary_tree_create_s(char *str) { // assume null terminated
+  assert(strlen(str) <= MAX_STRING_SIZE);
+  binary_tree *tree;
+  tree = malloc(sizeof(binary_tree));
+  // for (int i = 0; i < strlen(str); i++) {
+  //   new_tree->value[i] = str[i];
+  // }
+  strcpy(tree->value, str);
+  tree->left = NULL;
+  tree->right = NULL;
+  tree->parent = NULL;
+
+  return tree;
 }
 
+// fix up like above
 binary_tree *binary_tree_create_stt(char *str, binary_tree *left,
                                     binary_tree *right) {
   assert(strlen(str) < MAX_STRING_SIZE); // valid?

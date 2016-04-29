@@ -27,26 +27,25 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  // binary_tree *gameTree = binary_tree_create();
-  // binary_tree_write(gameTree, output);
-
-  // Step 3: check for error in file stream
+  //  Step 3: check for error in file stream
   // if (!feof(input)) {
   //   fprintf(stderr, "Error reading file %s!\n", argv[1]);
   //   exit(EXIT_FAILURE);
-  //
+  // }
 
   // Step 4: Close files
-  fclose(input);
 
   // issue probably in this function
   binary_tree *created = binary_tree_create_f(input);
-  binary_tree *gameTree = binary_tree_create_s("ooga"); // testing
-  binary_tree_write(gameTree, stdout);
-  fprintf(stdout, "yo\n");
-  printf("random shit");
+  binary_tree_write(created, output);
+  if (binary_tree_is_empty(created)) {
+    fprintf(stdout, "empty\n");
+  }
+  // fprintf(stdout, "non-empty");
+  // fprintf(output, "yo\n");
   fclose(stdout);
   fclose(output); // here or above?
+  fclose(input);
 
   return EXIT_SUCCESS;
 }

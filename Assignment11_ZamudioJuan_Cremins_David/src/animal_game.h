@@ -17,25 +17,21 @@
  * @param file [description]
  * @param file [description]
  */
-void play_game(input file, output file) {
-  // ask to play a game
-  // start play_round() in a while loop
-  // when that function done ask again
-  // if "yes" again stay in the while loop
-  // else exit the game and write finished tree to output file
-}
+void play_game(FILE *input, FILE *output);
+// ask to play a game
+// start play_round() in a while loop
+// when that function done ask again
+// if "yes" again stay in the while loop
+// else exit the game and write finished tree to output file
 
 /**
  * [play_round description]
  * @param AnimalTree [description]
  */
-binary_tree play_round(FILE *input, binary_tree AnimalTree) {
-  // plays a round of the game
-}
+binary_tree *play_round(FILE *input, binary_tree *AnimalTree);
 
-bool affirmative(char *answer) {
-  // private static boolean affirmative(String answer){
-  // return answer.equals("y");
-}
+bool affirmative(char *answer);
+// private static boolean affirmative(String answer){
+// return answer.equals("y");
 
 #endif
