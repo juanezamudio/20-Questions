@@ -8,7 +8,6 @@
 
 // Program entry point
 int main(int argc, char *argv[]) {
-  printf("Welcome to the Animals game!\n");
 
   // TODO: Add the game...
   if (argc != 3) {

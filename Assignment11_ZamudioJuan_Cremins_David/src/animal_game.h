@@ -3,7 +3,6 @@
 #define __ANIMAL_GAME_H__
 
 #include "binary_tree_io.c"
-
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,8 +17,7 @@
  * @param file [description]
  * @param file [description]
  */
-void play_game(input file, output file);
-{
+void play_game(input file, output file) {
   // ask to play a game
   // start play_round() in a while loop
   // when that function done ask again
@@ -31,11 +29,11 @@ void play_game(input file, output file);
  * [play_round description]
  * @param AnimalTree [description]
  */
-void play_round(AnimalTree) {
-
+binary_tree play_round(FILE *input, binary_tree AnimalTree) {
+  // plays a round of the game
 }
 
-bool affirmative() {
+bool affirmative(char *answer) {
   // private static boolean affirmative(String answer){
   // return answer.equals("y");
 }
