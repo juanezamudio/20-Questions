@@ -28,7 +28,7 @@ void play_game(FILE *input, FILE *output);
  * [play_round description]
  * @param AnimalTree [description]
  */
-binary_tree *play_round(FILE *input, binary_tree *AnimalTree);
+binary_tree *play_round(binary_tree *AnimalTree);
 
 bool affirmative(char *answer);
 // private static boolean affirmative(String answer){

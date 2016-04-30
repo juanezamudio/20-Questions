@@ -1,40 +1,40 @@
-// TODO: Use this file for your game logic.
+
 #include "animal_game.h"
 
 /**
  * start the game and user interface
  *
- * System.out.println("Welcome to the Animals game!");
- System.out.println();
- System.out.print("Shall we play a game? ");
-
- * @param file [description]
- * @param file [description]
+ * @param file that contains text version of the starting tree
+ * @param file to output the text version of the updated tree
  */
 void play_game(FILE *input, FILE *output) {
-  // TODO use output in this function
-  printf("Welcome to the Animals game!\n");
-  printf("\n");
-  printf("Shall we play a game?");
+
+  printf("Welcome to the Animals game!\n\n");
+  printf("Shall we play a game?\n");
 
   binary_tree *animalTree = binary_tree_create_f(input);
 
-  char *answer;     // current line
-  size_t a = 0;     // current line total mem allocation
-  ssize_t line = 0; // current line length (ssize_t is a signed size_t)
-
-  line = getline(&answer, &a, input);
+  // get user input from Terminal
+  char answer[MAX_STRING_SIZE];
+  fgets(answer, sizeof(answer), stdin);
 
   while (affirmative(answer)) {
-    animalTree = play_round(input, animalTree);
+    animalTree = play_round(animalTree);
+    printf("Shall we play a game?\n");
+    fgets(answer, sizeof(answer), stdin);
   }
+
+  // update the output file with the information learned through games
+  binary_tree_write(animalTree, output);
 }
 
 /**
- * [play_round description]
- * @param AnimalTree [description]
+ * Given a tree plays a round of the game with the user, updating
+ * the tree as necessary
+ *
+ * @param the current game tree
  */
-binary_tree *play_round(FILE *input, binary_tree *tree) {
+binary_tree *play_round(binary_tree *tree) {
   char *answer;     // current line
   size_t a = 0;     // current line total mem allocation
   ssize_t line = 0; // current line length (ssize_t is a signed size_t)
@@ -44,7 +44,7 @@ binary_tree *play_round(FILE *input, binary_tree *tree) {
 
   while (!binary_tree_is_leaf(tree)) {
     fprintf(stdout, "%s\n", binary_tree_get_string(root, value));
-    line = getline(&answer, &a, input);
+    // line = getline(&answer, &a, input);
 
     if (affirmative(answer)) {
       tree = binary_tree_get_right(tree);
@@ -102,4 +102,4 @@ binary_tree *play_round(FILE *input, binary_tree *tree) {
   }
 }
 
-bool affirmative(char *answer) { return answer[0] == 'y'; }
+bool affirmative(char *answer) { return answer[0] == 'y' || answer[0] == 'Y'; }

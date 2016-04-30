@@ -43,8 +43,8 @@ int main(int argc, char *argv[]) {
   binary_tree *created = binary_tree_create_f(input);
   binary_tree_write(created, output);
 
-  // TODO play game!
-  // play_game(input, output);
+  // play game!
+  play_game(input, output);
 
   // Step 4: Close files
   fclose(output);
