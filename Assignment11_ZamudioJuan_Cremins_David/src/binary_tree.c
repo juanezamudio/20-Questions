@@ -1,5 +1,5 @@
 #include "binary_tree.h"
-#include <assert.h> // valid?
+#include <assert.h>
 #include <string.h>
 
 // We have provided you with the binary tree struct. This struct must not be
@@ -26,16 +26,13 @@ binary_tree *binary_tree_create() {
     new_tree->right = NULL;
     new_tree->parent = NULL;
   }
-  return new_tree; // maybe lead to errors?
+  return new_tree;
 }
 
-binary_tree *binary_tree_create_s(char *str) { // assume null terminated
+binary_tree *binary_tree_create_s(char *str) {
   assert(strlen(str) <= MAX_STRING_SIZE);
   binary_tree *tree;
   tree = malloc(sizeof(binary_tree));
-  // for (int i = 0; i < strlen(str); i++) {
-  //   new_tree->value[i] = str[i];
-  // }
   strcpy(tree->value, str);
   tree->left = NULL;
   tree->right = NULL;
@@ -44,36 +41,32 @@ binary_tree *binary_tree_create_s(char *str) { // assume null terminated
   return tree;
 }
 
-// fix up like above
 binary_tree *binary_tree_create_stt(char *str, binary_tree *left,
                                     binary_tree *right) {
-  assert(strlen(str) < MAX_STRING_SIZE); // valid?
-  if (new_tree == NULL) {
-    new_tree = malloc(sizeof(binary_tree));
-    for (int i = 0; i < strlen(str); i++) {
-      new_tree->value[i] = str[i];
-    }
-    new_tree->left = left;
-    new_tree->right = right;
-    new_tree->parent = NULL;
-  }
-  return new_tree;
+  assert(strlen(str) < MAX_STRING_SIZE);
+  binary_tree *tree;
+  tree = malloc(sizeof(binary_tree));
+  strcpy(tree->value, str);
+  tree->left = left;
+  tree->right = right;
+  tree->parent = NULL;
+
+  return tree;
 }
 
 // Destructor
-// This function should be implemented recursively and free nodes in post- order
+// implemented recursively to free nodes in post- order
 void binary_tree_destroy(binary_tree *self) {
-  if (!(self->left = self->right = NULL)) { // vs. == ****
+  if (!(self->left == self->right) && (self->left == NULL)) {
     binary_tree_destroy(self->left);
     binary_tree_destroy(self->right);
-    free(self);
-    self = NULL;
   }
+  free(self);
+  self = NULL;
 }
 
 // Setters
-// The greatest challenge is to maintain the parent pointers properly when
-// executing binary_tree_set_left and binary_tree_set_right
+// maintains parent pointers properly
 void binary_tree_set_left(binary_tree *self, binary_tree *left) {
   if (self->left != NULL) {
     binary_tree_destroy(self->left);
@@ -81,12 +74,13 @@ void binary_tree_set_left(binary_tree *self, binary_tree *left) {
   self->left = left;
   self->left->parent = self;
 }
+
 void binary_tree_set_right(binary_tree *self, binary_tree *right) {
   if (self->right != NULL) {
     binary_tree_destroy(self->right);
   }
   self->right = right;
-  self->right->parent = self; // right path?
+  self->right->parent = self;
 }
 
 // Queries
@@ -101,19 +95,17 @@ bool binary_tree_is_leaf(binary_tree *self) {
 }
 
 bool binary_tree_is_left(binary_tree *self) {
-  return (self->parent->left == self); // double equals good?
+  return (self->parent->left == self);
 }
 
 bool binary_tree_is_right(binary_tree *self) {
   return (self->parent->right == self);
 }
 
-bool binary_tree_is_root(binary_tree *self) {
-  return (self->value[0] != '\0' && self->parent == NULL);
-}
+bool binary_tree_is_root(binary_tree *self) { return (self->parent == NULL); }
 
 int binary_tree_height(binary_tree *self) {
-  if ((self->left = self->right = NULL)) {
+  if ((self->left == self->right) && (self->right == NULL)) {
     return -1;
   } else {
     int rightHeight = (binary_tree_height(self->right) + 1);
@@ -134,14 +126,15 @@ int binary_tree_depth(binary_tree *self) {
 }
 
 // Getters
-// look at piazza note on this function
 char *binary_tree_get_string(binary_tree *self, char *str) {
-  int i = 0;
-  while (self->value[i] != '\0') {
-    str[i] = self->value[i];
-    i++;
-  }
-  str[i] = '\0';
+  // int i = 0;
+  // while (self->value[i] != '\0') {
+  //   str[i] = self->value[i];
+  //   i++;
+  // }
+  // str[i] = '\0';
+  // TODO is this okay? wants NULL returned on failure
+  strcpy(str, self->value);
   return str;
 }
 

@@ -3,6 +3,7 @@
  *  TODO: Add Javadoc style header
  * @author...
  */
+// TODO check for memory leaks on lab computers
 
 #include "animal_game.h"
 #include "binary_tree.h"
