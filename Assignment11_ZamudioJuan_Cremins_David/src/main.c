@@ -32,7 +32,8 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  //   Step 3: check for error in file stream
+  // TODO find out if needed/why failing
+  // Step 3: check for error in file stream
   // if (!feof(input)) {
   //   fprintf(stderr, "Error reading file %s!\n", argv[1]);
   //   exit(EXIT_FAILURE);
