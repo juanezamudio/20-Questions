@@ -2,10 +2,6 @@
 #include <assert.h>
 #include <string.h>
 
-// We have provided you with the binary tree struct. This struct must not be
-// changed. You should implement the binary tree functions declared in
-// binary_tree.h, and any helper functions you would like in this file.
-
 struct binary_tree {
   char value[MAX_STRING_SIZE];
   binary_tree *left;
@@ -68,17 +64,11 @@ void binary_tree_destroy(binary_tree *self) {
 // Setters
 // maintains parent pointers properly
 void binary_tree_set_left(binary_tree *self, binary_tree *left) {
-  if (self->left != NULL) {
-    binary_tree_destroy(self->left);
-  }
   self->left = left;
   self->left->parent = self;
 }
 
 void binary_tree_set_right(binary_tree *self, binary_tree *right) {
-  if (self->right != NULL) {
-    binary_tree_destroy(self->right);
-  }
   self->right = right;
   self->right->parent = self;
 }
@@ -127,13 +117,6 @@ int binary_tree_depth(binary_tree *self) {
 
 // Getters
 char *binary_tree_get_string(binary_tree *self, char *str) {
-  // int i = 0;
-  // while (self->value[i] != '\0') {
-  //   str[i] = self->value[i];
-  //   i++;
-  // }
-  // str[i] = '\0';
-  // TODO is this okay? wants NULL returned on failure
   strcpy(str, self->value);
   return str;
 }

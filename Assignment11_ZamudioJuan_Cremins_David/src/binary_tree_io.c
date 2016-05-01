@@ -70,7 +70,11 @@ binary_tree *binary_tree_create_f(FILE *stream) {
     // recursion
     binary_tree *left = binary_tree_create_f(stream);
     binary_tree *right = binary_tree_create_f(stream);
+
     newTree = binary_tree_create_stt(str, left, right);
+    // fix parent pointers
+    binary_tree_set_left(newTree, left);
+    binary_tree_set_right(newTree, right);
 
   } else if (line[index] == 'A') { // at a leaf/answer
     index++;

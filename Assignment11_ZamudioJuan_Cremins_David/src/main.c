@@ -8,6 +8,7 @@
 #include "animal_game.h"
 #include "binary_tree.h"
 #include "binary_tree_io.h"
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -40,8 +41,10 @@ int main(int argc, char *argv[]) {
   // }
 
   // testing binary_tree_io.h functions
-  binary_tree *created = binary_tree_create_f(input);
-  binary_tree_write(created, output);
+  // leave commented out while playing game!
+  //
+  // binary_tree *created = binary_tree_create_f(input);
+  // binary_tree_write(created, output);
 
   // play game!
   play_game(input, output);
