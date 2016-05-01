@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <string.h>
 
+// provided struct
 struct binary_tree {
   char value[MAX_STRING_SIZE];
   binary_tree *left;

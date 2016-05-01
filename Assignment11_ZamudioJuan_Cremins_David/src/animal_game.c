@@ -1,6 +1,6 @@
-
 #include "animal_game.h"
 #include <assert.h>
+
 /**
  * start the game and user interface
  *
@@ -53,13 +53,14 @@ binary_tree *play_round(binary_tree *tree) {
     }
   }
 
-  fprintf(stdout, "Were you thinking of a %s?",
-          binary_tree_get_string(tree, value));
+  char *expected = binary_tree_get_string(tree, value);
+  strtok(expected, "\n"); // formatting helper function
+  fprintf(stdout, "Were you thinking of a %s?\n", expected);
 
   char final_answer[MAX_STRING_SIZE];
   fgets(final_answer, sizeof(final_answer), stdin);
 
-  if (affirmative(final_answer)) {
+  if (affirmative(final_answer)) { // no need to add anything
     printf("Great!\n\n");
     return root;
   } else {
@@ -70,6 +71,8 @@ binary_tree *play_round(binary_tree *tree) {
     char new_animal[MAX_STRING_SIZE];
     fgets(new_animal, sizeof(new_animal), stdin); // store new animal in animal
 
+    strtok(old_animal, "\n");
+    strtok(new_animal, "\n");
     fprintf(stdout, "What question separates %s from %s?\n", old_animal,
             new_animal);
     char question[MAX_STRING_SIZE];
@@ -84,7 +87,7 @@ binary_tree *play_round(binary_tree *tree) {
     binary_tree *parent;
     if (new_animal[0] == '\0') {
       return root;
-    } else {
+    } else { // store parent
       parent = binary_tree_get_parent(tree);
       assert(parent != NULL);
     }
@@ -107,8 +110,9 @@ binary_tree *play_round(binary_tree *tree) {
       binary_tree_set_left(parent, addition);
     }
 
-    return root;
+    return root; // the original updated tree
   }
 }
 
+// simple check for the first character of a string answer
 bool affirmative(char *answer) { return answer[0] == 'y' || answer[0] == 'Y'; }

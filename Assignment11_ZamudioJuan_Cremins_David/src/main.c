@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  // Step 1: open files
+  // open files
   FILE *input = fopen(argv[1], "r"); // Open in read mode
   if (input == NULL) {
     printf("Could not open file %s!\n", argv[1]);
@@ -33,15 +33,7 @@ int main(int argc, char *argv[]) {
     exit(EXIT_FAILURE);
   }
 
-  // TODO find out if needed/why failing
-  // Step 3: check for error in file stream
-  // if (!feof(input)) {
-  //   fprintf(stderr, "Error reading file %s!\n", argv[1]);
-  //   exit(EXIT_FAILURE);
-  // }
-
-  // testing binary_tree_io.h functions
-  // leave commented out while playing game!
+  // testing binary_tree_io.h functions - leave commented out to play game!
   //
   // binary_tree *created = binary_tree_create_f(input);
   // binary_tree_write(created, output);
@@ -49,7 +41,7 @@ int main(int argc, char *argv[]) {
   // play game!
   play_game(input, output);
 
-  // Step 4: Close files
+  // close files
   fclose(output);
   fclose(input);
 
