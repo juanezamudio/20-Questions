@@ -1,8 +1,12 @@
-
 /**
- *  TODO: Add Javadoc style header
- * @author...
+ * C class that is the main method
+ *
+ * @author Juan Zamudio
+ * @author David Cremins
+ *
+ * @date May 1, 2016
  */
+
 // TODO check for memory leaks on lab computers
 
 #include "animal_game.h"
@@ -32,11 +36,6 @@ int main(int argc, char *argv[]) {
     printf("Could not open file %s!\n", argv[2]);
     exit(EXIT_FAILURE);
   }
-
-  // testing binary_tree_io.h functions - leave commented out to play game!
-  //
-  // binary_tree *created = binary_tree_create_f(input);
-  // binary_tree_write(created, output);
 
   // play game!
   play_game(input, output);

@@ -1,11 +1,21 @@
+/**
+ * C class that takes care of the functions needed to play the animal game (play
+ * game, play round, affirmative)
+ *
+ * @author Juan Zamudio
+ * @author David Cremins
+ *
+ * @date May 1, 2016
+ *
+ */
 #include "animal_game.h"
 #include <assert.h>
 
 /**
- * start the game and user interface
+ * @brief starts the game and user interface
  *
- * @param file that contains text version of the starting tree
- * @param file to output the text version of the updated tree
+ * @param input that contains text version of the starting tree
+ * @param output to output the text version of the updated tree
  */
 void play_game(FILE *input, FILE *output) {
 
@@ -15,7 +25,7 @@ void play_game(FILE *input, FILE *output) {
   binary_tree *animalTree = binary_tree_create_f(input);
   assert(animalTree != NULL);
 
-  // get user input from Terminal
+  // get user input from command line
   char answer[MAX_STRING_SIZE];
   fgets(answer, sizeof(answer), stdin);
 
@@ -30,10 +40,10 @@ void play_game(FILE *input, FILE *output) {
 }
 
 /**
- * Given a tree plays a round of the game with the user, updating
+ * @brief Given a tree, plays a round of the game with the user, updating
  * the tree as necessary
  *
- * @param the current game tree
+ * @param tree the current game tree
  */
 binary_tree *play_round(binary_tree *tree) {
   assert(tree != NULL);
@@ -89,7 +99,7 @@ binary_tree *play_round(binary_tree *tree) {
       return root;
     } else { // store parent
       parent = binary_tree_get_parent(tree);
-      assert(parent != NULL);
+      // assert(parent != NULL);
     }
 
     binary_tree *old = binary_tree_create_s(old_animal);
@@ -114,5 +124,10 @@ binary_tree *play_round(binary_tree *tree) {
   }
 }
 
-// simple check for the first character of a string answer
+/**
+ * @brief simple check for the first character of a string answer
+ *
+ * @param  answer the answer inputed by the player
+ * @return        true or false depending on given answer
+ */
 bool affirmative(char *answer) { return answer[0] == 'y' || answer[0] == 'Y'; }

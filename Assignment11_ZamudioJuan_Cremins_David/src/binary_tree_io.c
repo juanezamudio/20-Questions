@@ -1,8 +1,18 @@
+/**
+ * C class that takes care of the functions needed for IO construction of a
+ * binary tree (write to file, create from file)
+ *
+ * @author Juan Zamudio
+ * @author David Cremins
+ *
+ * @date May 1, 2016
+ *
+ */
 #include "binary_tree_io.h"
 #include "binary_tree.h"
 
 /**
- * writes a valid binary tree to an output file pre-order
+ * @brief writes a valid binary tree to an output file pre-order
  *
  * @param self    pointer to the binary tree
  * @param stream  file to be written to
@@ -32,11 +42,15 @@ void binary_tree_write(binary_tree *self, FILE *stream) {
 }
 
 /**
- * Creates a binary tree from a data file
+ * @brief Creates a binary tree from a data file
+ *
  * @param  stream the input stream
  * @return    Binary tree or NULL, if...
  *            1. the input stream does not represent a
  *            pre-order traversal of a binary tree
+ *            2. there is a line in the input file
+ *            that does not begin with Q or A
+ *            3. there is a blank line in the input file
  *            4. Any other unexpected error occurs
  */
 binary_tree *binary_tree_create_f(FILE *stream) {

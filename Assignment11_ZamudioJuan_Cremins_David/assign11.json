@@ -1,1 +1,10 @@
-TODO fill out
+{
+  "version": "0.0.1",
+  "class": "CSCI062",
+  "collaborators": [
+    "dcremins",
+    "jzamudio"
+  ],
+  "notes": "Have a great summer!",
+  "ec": false
+}
